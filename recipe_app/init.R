@@ -38,3 +38,6 @@ for (i in 1:length(recs)){
     rec_list[[i]]$img <- NA
   }
 }
+
+#Name rec_list
+names(rec_list) <- rec_nm
