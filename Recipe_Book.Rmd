@@ -27,14 +27,14 @@ for(i in 1:length(recs)){
   cat("\\break \n  \n")
   
   #Print recipe name
-  cat("#", recs[i], " \n  \n \\hrule \n \\vspace{5 mm}  \n  \n")  
+  cat("#", nice[[i]], " \n  \n \\hrule \n \\vspace{5 mm}  \n  \n")  
   
   #IF there is an image:
   if(length(img[[i]]!=0)){
     #cat("\\hfill \\includegraphics[height=2in]{", img[[i]], "} \n  \n", sep="")
-    cat("\\HUGE ", recs[i], "\\normalsize \\hfill \\includegraphics[align=c, height=3in]{", img[[i]], "} \n  \n", sep="")
+    cat("\\HUGE ", nice[[i]], "\\normalsize \\hfill \\includegraphics[align=c, height=3in]{", img[[i]], "} \n  \n", sep="")
   } else {
-    cat("\\HUGE", recs[i], "\\normalsize")
+    cat("\\HUGE", nice[[i]], "\\normalsize")
   }
 
   #Add a horizontal line

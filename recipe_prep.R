@@ -1,3 +1,8 @@
+#######################################X
+#----Brian and Simona's Recipe Book----X
+#------------R Markdown PDF------------X
+#-------------Recipe Prep--------------X
+#######################################X
 
 #Load packages
 library(dplyr)
@@ -9,10 +14,7 @@ library(kableExtra)
 options(stringsAsFactors=F)
 
 #Get recipe names (folder names)
-recs <- list.dirs("recipes") %>% #list directories
-  gsub("recipes/", "", .) %>% #get rid of path
-  .[-1] #drop the first element (the root dir "recipes")
-
+recs <- list.dirs("recipes", recursive = FALSE, full.names = FALSE)
 
 #Read in ingredients
 ingred <- list()
@@ -25,8 +27,6 @@ for(i in 1:length(recs)){
   names(ingred[[i]]) <- str_to_title(names(ingred[[i]]))
 }
 
-
-
 #Read in steps
 steps <- list()
 for(i in 1:length(recs)){
@@ -34,8 +34,6 @@ for(i in 1:length(recs)){
   ingred.file <- grep("steps", dir(path), value=T)
   steps[[i]] <- read.csv(file.path(path, ingred.file))
 }
-
-
 
 #Create steps string
 step.str <- list()
@@ -61,10 +59,18 @@ for (i in 1:length(steps)){
   step.str[[i]] <- out
 }
 
-
 #Read image paths
 img <- list()
 for(i in 1:length(recs)){
   path <- file.path("recipes", recs[i])
   img[[i]] <- file.path(path, grep("jpg", dir(path), value=T))
 }
+
+
+#Read nice name
+nice <- list()
+for(i in 1:length(recs)){
+  path <- file.path("recipes", recs[i], "nice.txt")
+  nice[[i]] <- read.csv(path, header = F)$V1[1]
+}
+
