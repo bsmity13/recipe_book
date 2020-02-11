@@ -30,7 +30,8 @@ ui <- dashboardPage(
       menuItem("Edit Recipes", tabName = "editor", icon = icon("edit")),
       menuItem("New Recipe", tabName = "creator", icon = icon("utensils")),
       menuItem("Github Repo", icon = icon("file-code-o"), 
-               href = "https://github.com/bsmity13/recipe_book/")
+               href = "https://github.com/bsmity13/recipe_book/",
+               badgeLabel = "link", badgeColor = "aqua")
     )
   ),
   #... Dashboard body----
