@@ -1,0 +1,52 @@
+---
+title: "Recipe Book"
+author: "Brian J. Smith"
+date: '`r format(Sys.Date(), "%B %d, %Y")`'
+output: 
+  pdf_document:
+    toc: true
+    toc_depth: 1
+    keep_tex: true
+header-includes:
+  - \usepackage{graphbox}
+  - \usepackage{mwe}
+  - \usepackage[11pt]{moresize}
+fontsize: 11pt
+geometry: margin=0.75in
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, results="asis")
+source("recipe_prep.R")
+```
+
+```{r print recipes}
+for(i in 1:length(recs)){
+  #Start with page break
+  cat("\\break \n  \n")
+  
+  #Print recipe name
+  cat("#", recs[i], " \n  \n \\hrule \n \\vspace{5 mm}  \n  \n")  
+  
+  #IF there is an image:
+  if(length(img[[i]]!=0)){
+    #cat("\\hfill \\includegraphics[height=2in]{", img[[i]], "} \n  \n", sep="")
+    cat("\\HUGE ", recs[i], "\\normalsize \\hfill \\includegraphics[align=c, height=3in]{", img[[i]], "} \n  \n", sep="")
+  } else {
+    cat("\\HUGE", recs[i], "\\normalsize")
+  }
+
+  #Add a horizontal line
+  cat("\\vspace{5 mm}  \\hrule \n \n")
+  
+  #Print ingredients
+  ingred.table <- kable(ingred[[i]], format="latex")
+    
+  cat("## Ingredients \n  \n", ingred.table, " \n  \n")
+  
+  #Print Steps
+  cat("## Steps \n  \n", step.str[[i]], "\n  \n")
+}
+
+```
