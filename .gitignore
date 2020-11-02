@@ -1,7 +1,4 @@
-.Rproj.user/*
-.RData
-.Rhistory
 .Rproj.user
-Recipe_Book.log
-Recipe_Book.pdf
-Recipe_Book.tex
+.Rhistory
+.RData
+.Ruserdata
